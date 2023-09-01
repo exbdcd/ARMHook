@@ -92,7 +92,7 @@ extern "C" {
 	bool GetMemoryPermission(const char* libName, pid_t pid, uintptr_t addr, p_flag* type);
 	inline bool IsAddrExecute(uintptr_t addr)
 	{
-		p_flag type = { 0,0,0, 0 };
+		p_flag type = { 0,0,0, 0, 0, 0 };
 		GetMemoryPermission(NULL, -1, addr, &type);
 		return type.bExecute;
 	}
