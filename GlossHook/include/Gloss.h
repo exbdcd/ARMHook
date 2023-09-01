@@ -78,7 +78,7 @@ extern "C" {
 	const char* GlossAddr(uintptr_t sym_addr, size_t* sym_size);
 
 	const char* GlossGetLibMachine(const char* libName);
-	const int GlossGetLibBit(const char* libName);
+	int GlossGetLibBit(const char* libName);
 
 	uintptr_t GlossGetLibSection(const char* libName, const char* sec_name, size_t* sec_size);
 
@@ -92,7 +92,7 @@ extern "C" {
 	bool GetMemoryPermission(const char* libName, pid_t pid, uintptr_t addr, p_flag* type);
 	inline bool IsAddrExecute(uintptr_t addr)
 	{
-		p_flag type = { 0,0,0 };
+		p_flag type = { 0,0,0, 0 };
 		GetMemoryPermission(NULL, -1, addr, &type);
 		return type.bExecute;
 	}
