@@ -35,8 +35,8 @@ namespace Gloss {
 		
 		enum class conds { EQ, NE, CS, HS = CS, CC, LO = CC, MI, PL, VS, VC, HI, LS, GE, LT, GT, LE, AL, NV, MAX_COND };
 
-		const int CheckAbsoluteJump(uintptr_t addr);
-		const int CheckRelativeJump(uintptr_t addr);
+		int CheckAbsoluteJump(uintptr_t addr);
+		int CheckRelativeJump(uintptr_t addr);
 
 #ifdef __arm__
 
@@ -46,15 +46,15 @@ namespace Gloss {
 		void MakeThumb32NOP(uint32_t addr, size_t size);
 		void MakeThumbRET(uint32_t addr, uint8_t type);
 
-		const uint16_t MakeThumb16B(uint32_t addr, uint32_t dest);
-		const uint16_t MakeThumb16BCond(uint32_t addr, uint32_t dest, conds cond);
-		const uint32_t MakeThumb32B(uint32_t addr, uint32_t dest);
-		const uint32_t MakeThumb32BCond(uint32_t addr, uint32_t dest, conds cond);
-		const uint32_t MakeThumbBL(uint32_t addr, uint32_t func);
-		const uint32_t MakeThumbBL_W(uint32_t addr, uint32_t func);
-		const uint32_t MakeThumbBLX(uint32_t addr, uint32_t func);
-		const uint32_t MakeThumbBLX_W(uint32_t addr, uint32_t func);
-		const uint16_t MakeThumbCB(uint32_t addr, uint32_t dest, gloss_reg::e_reg reg, bool is_cbnz);
+		uint16_t MakeThumb16B(uint32_t addr, uint32_t dest);
+		uint16_t MakeThumb16BCond(uint32_t addr, uint32_t dest, conds cond);
+		uint32_t MakeThumb32B(uint32_t addr, uint32_t dest);
+		uint32_t MakeThumb32BCond(uint32_t addr, uint32_t dest, conds cond);
+		uint32_t MakeThumbBL(uint32_t addr, uint32_t func);
+		uint32_t MakeThumbBL_W(uint32_t addr, uint32_t func);
+		uint32_t MakeThumbBLX(uint32_t addr, uint32_t func);
+		uint32_t MakeThumbBLX_W(uint32_t addr, uint32_t func);
+		uint16_t MakeThumbCB(uint32_t addr, uint32_t dest, gloss_reg::e_reg reg, bool is_cbnz);
 		int8_t MakeThumbAbsoluteJump(uint32_t addr, uint32_t dest);
 
 		uint32_t GetThumb16BranchDestination(uint32_t addr);
@@ -63,9 +63,9 @@ namespace Gloss {
 		void MakeArmNOP(uint32_t addr, size_t size);
 		void MakeArmRET(uint32_t addr, uint8_t type);
 
-		const uint32_t MakeArmB(uint32_t addr, uint32_t dest, conds cond = conds::AL);
-		const uint32_t MakeArmBL(uint32_t addr, uint32_t func, conds cond = conds::AL);
-		const uint32_t MakeArmBLX(uint32_t addr, uint32_t func);
+		uint32_t MakeArmB(uint32_t addr, uint32_t dest, conds cond = conds::AL);
+		uint32_t MakeArmBL(uint32_t addr, uint32_t func, conds cond = conds::AL);
+		uint32_t MakeArmBLX(uint32_t addr, uint32_t func);
 		int8_t MakeArmAbsoluteJump(uint32_t addr, uint32_t dest);
 
 		uint32_t GetArmBranchDestination(uint32_t addr);
@@ -85,7 +85,7 @@ namespace Gloss {
 
 #endif // __arm__
 
-		const int WriteByte(uintptr_t addr, void (*inst_func)(), size_t len);
+		int WriteByte(uintptr_t addr, void (*inst_func)(), size_t len);
 	}
 }
 #endif // !__GLOSSHOOK_INST_H__
